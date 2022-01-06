@@ -4,19 +4,12 @@ import MediaPlayer
 import KSPlayer
 
 open class RtspPlayerView: PlayerView {
-    private var delayItem: DispatchWorkItem?
-    /// Gesture used to show / hide control view
-    public let tapGesture = UITapGestureRecognizer()
-    public let doubleTapGesture = UITapGestureRecognizer()
-    public let panGesture = UIPanGestureRecognizer()
-    /// 滑动方向
+
     var scrollDirection = KSPanDirection.horizontal
     var tmpPanValue: Float = 0
-    private var isSliderSliding = false
 
     public let bottomMaskView = LayerContainerView()
     public let topMaskView = LayerContainerView()
-    // 是否播放过
     private(set) var isPlayed = false
 
     public private(set) var currentDefinition = 0 {
@@ -73,7 +66,6 @@ open class RtspPlayerView: PlayerView {
     }
 
     override open func player(layer: KSPlayerLayer, currentTime: TimeInterval, totalTime: TimeInterval) {
-        guard !isSliderSliding else { return }
         super.player(layer: layer, currentTime: currentTime, totalTime: totalTime)
     }
 
@@ -95,7 +87,6 @@ open class RtspPlayerView: PlayerView {
         case .paused, .playedToTheEnd, .error:
             hideLoader()
             replayButton.isHidden = false
-            delayItem?.cancel()
             if state == .playedToTheEnd {
                 replayButton.isSelected = true
             }
@@ -106,7 +97,6 @@ open class RtspPlayerView: PlayerView {
 
     override open func resetPlayer() {
         super.resetPlayer()
-        delayItem = nil
         resource = nil
         toolBar.reset()
         hideLoader()
