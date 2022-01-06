@@ -148,63 +148,6 @@ open class RtspPlayerView: PlayerView {
     }
 }
 
-// MARK: - seekToView
-
-public extension VideoPlayerView {
-    /**
-     Call when User use the slide to seek function
-
-     - parameter second:     target time
-     - parameter isAdd:         isAdd
-     */
-    func showSeekToView(second: TimeInterval, isAdd: Bool) {
-        seekToView.isHidden = false
-        toolBar.currentTime = second
-        seekToView.set(text: second.toString(for: toolBar.timeType), isAdd: isAdd)
-    }
-
-    func hideSeekToView() {
-        seekToView.isHidden = true
-    }
-}
-
-// MARK: - private functions
-
-extension VideoPlayerView {
-
-    private func showLoader() {
-        loadingIndector.isHidden = false
-        loadingIndector.startAnimating()
-    }
-
-    private func hideLoader() {
-        loadingIndector.isHidden = true
-        loadingIndector.stopAnimating()
-    }
-
-
-    private func addConstraint() {
-        loadingIndector.translatesAutoresizingMaskIntoConstraints = false
-        playerLayer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            playerLayer.topAnchor.constraint(equalTo: topAnchor),
-            playerLayer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            playerLayer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            playerLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            loadingIndector.centerYAnchor.constraint(equalTo: centerYAnchor),
-            loadingIndector.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
-    }
-
-    private func preferredStyle() -> UIAlertController.Style {
-        #if canImport(UIKit)
-        return UIDevice.current.userInterfaceIdiom == .phone ? .actionSheet : .alert
-        #else
-        return .alert
-        #endif
-    }
-}
-
 // MARK: - private functions
 
 extension RtspPlayerView {
@@ -219,7 +162,6 @@ extension RtspPlayerView {
         loadingIndector.stopAnimating()
     }
 
-
     private func addConstraint() {
         playerLayer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -230,13 +172,5 @@ extension RtspPlayerView {
             loadingIndector.centerYAnchor.constraint(equalTo: centerYAnchor),
             loadingIndector.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
-    }
-
-    private func preferredStyle() -> UIAlertController.Style {
-        #if canImport(UIKit)
-        return UIDevice.current.userInterfaceIdiom == .phone ? .actionSheet : .alert
-        #else
-        return .alert
-        #endif
     }
 }
