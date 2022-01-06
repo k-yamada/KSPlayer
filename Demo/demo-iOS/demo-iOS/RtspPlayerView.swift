@@ -28,8 +28,6 @@ open class RtspPlayerView: PlayerView {
     }
 
     private var subtitleEndTime = TimeInterval(0)
-    /// Activty Indector for loading
-    public var loadingIndector: UIView & LoadingIndector = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     public let srtControl = KSSubtitleController()
     public var isLock: Bool { false }
 
@@ -48,9 +46,7 @@ open class RtspPlayerView: PlayerView {
 
     open func setupUIComponents() {
         addSubview(playerLayer)
-        backgroundColor = .black
-        loadingIndector.isHidden = true
-        addSubview(loadingIndector)
+//        backgroundColor = .black
         addConstraint()
         layoutIfNeeded()
     }
@@ -66,12 +62,10 @@ open class RtspPlayerView: PlayerView {
             toolBar.timeSlider.isPlayable = true
         case .buffering:
             isPlayed = true
-            showLoader()
         case .bufferFinished:
             isPlayed = true
-            hideLoader()
         case .paused, .playedToTheEnd, .error:
-            hideLoader()
+            break
         default:
             break
         }
@@ -81,7 +75,6 @@ open class RtspPlayerView: PlayerView {
         super.resetPlayer()
         resource = nil
         toolBar.reset()
-        hideLoader()
         isPlayed = false
     }
 
@@ -116,21 +109,6 @@ open class RtspPlayerView: PlayerView {
     override open func set(url: URL, options: KSOptions) {
         set(resource: KSPlayerResource(url: url, options: options))
     }
-}
-
-// MARK: - private functions
-
-extension RtspPlayerView {
-
-    private func showLoader() {
-        loadingIndector.isHidden = false
-        loadingIndector.startAnimating()
-    }
-
-    private func hideLoader() {
-        loadingIndector.isHidden = true
-        loadingIndector.stopAnimating()
-    }
 
     private func addConstraint() {
         playerLayer.translatesAutoresizingMaskIntoConstraints = false
@@ -139,8 +117,6 @@ extension RtspPlayerView {
             playerLayer.leadingAnchor.constraint(equalTo: leadingAnchor),
             playerLayer.bottomAnchor.constraint(equalTo: bottomAnchor),
             playerLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            loadingIndector.centerYAnchor.constraint(equalTo: centerYAnchor),
-            loadingIndector.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
 }
