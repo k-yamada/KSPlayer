@@ -8,8 +8,6 @@ open class RtspPlayerView: PlayerView {
     var scrollDirection = KSPanDirection.horizontal
     var tmpPanValue: Float = 0
 
-    public let bottomMaskView = LayerContainerView()
-    public let topMaskView = LayerContainerView()
     private(set) var isPlayed = false
 
     public private(set) var currentDefinition = 0 {
@@ -32,7 +30,6 @@ open class RtspPlayerView: PlayerView {
     private var subtitleEndTime = TimeInterval(0)
     /// Activty Indector for loading
     public var loadingIndector: UIView & LoadingIndector = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-    public var replayButton = UIButton()
     public let srtControl = KSSubtitleController()
     public var isLock: Bool { false }
 
@@ -52,13 +49,6 @@ open class RtspPlayerView: PlayerView {
     open func setupUIComponents() {
         addSubview(playerLayer)
         backgroundColor = .black
-        topMaskView.gradientLayer.colors = [UIColor.black.withAlphaComponent(0.5).cgColor, UIColor.clear.cgColor]
-        bottomMaskView.gradientLayer.colors = topMaskView.gradientLayer.colors
-        topMaskView.gradientLayer.startPoint = .zero
-        topMaskView.gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-        bottomMaskView.gradientLayer.startPoint = CGPoint(x: 0, y: 1)
-        bottomMaskView.gradientLayer.endPoint = .zero
-
         loadingIndector.isHidden = true
         addSubview(loadingIndector)
         addConstraint()
@@ -76,20 +66,12 @@ open class RtspPlayerView: PlayerView {
             toolBar.timeSlider.isPlayable = true
         case .buffering:
             isPlayed = true
-            replayButton.isHidden = true
-            replayButton.isSelected = false
             showLoader()
         case .bufferFinished:
             isPlayed = true
-            replayButton.isHidden = true
-            replayButton.isSelected = false
             hideLoader()
         case .paused, .playedToTheEnd, .error:
             hideLoader()
-            replayButton.isHidden = false
-            if state == .playedToTheEnd {
-                replayButton.isSelected = true
-            }
         default:
             break
         }
@@ -100,8 +82,6 @@ open class RtspPlayerView: PlayerView {
         resource = nil
         toolBar.reset()
         hideLoader()
-        replayButton.isSelected = false
-        replayButton.isHidden = false
         isPlayed = false
     }
 
