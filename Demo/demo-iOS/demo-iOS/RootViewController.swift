@@ -13,6 +13,8 @@ import UIKit
 class RootViewController: UIViewController {
     @IBOutlet weak var videoView: UIView!
 
+    @IBOutlet weak var videoWidthConstraint: NSLayoutConstraint!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,7 @@ class RootViewController: UIViewController {
             playerView.trailingAnchor.constraint(equalTo: videoView.trailingAnchor),
             playerView.bottomAnchor.constraint(equalTo: videoView.bottomAnchor),
         ])
+//        videoWidthConstraint.constant = 300
     }
 
 //    override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -46,9 +46,11 @@ open class RtspPlayerView: PlayerView {
 
     open func setupUIComponents() {
         addSubview(playerLayer)
+        print("frameSize: playerLayer1: \(playerLayer.frame)")
 //        backgroundColor = .black
         addConstraint()
         layoutIfNeeded()
+        print("frameSize: playerLayer2: \(playerLayer.frame)")
     }
 
     override open func player(layer: KSPlayerLayer, currentTime: TimeInterval, totalTime: TimeInterval) {
@@ -59,6 +61,9 @@ open class RtspPlayerView: PlayerView {
         super.player(layer: layer, state: state)
         switch state {
         case .readyToPlay:
+            if let naturalSize = layer.player?.naturalSize {
+                updateUI(naturalSize: naturalSize)
+            }
             toolBar.timeSlider.isPlayable = true
         case .buffering:
             isPlayed = true
@@ -117,6 +122,15 @@ open class RtspPlayerView: PlayerView {
             playerLayer.leadingAnchor.constraint(equalTo: leadingAnchor),
             playerLayer.bottomAnchor.constraint(equalTo: bottomAnchor),
             playerLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            playerLayer.widthAnchor.constraint(equalToConstant: 300)
         ])
+    }
+
+    private func updateUI(naturalSize: CGSize) {
+        print("updateUI: \(naturalSize)")
+        print("playerLayer.frame: \(playerLayer.frame)")
+        frame = CGRect(x: 0, y: 0, width: 300, height: playerLayer.frame.height)
+        print("playerLayer.frame: \(playerLayer.frame)")
+//        playerLayer.player?. contentMode = .scaleAspectFit
     }
 }

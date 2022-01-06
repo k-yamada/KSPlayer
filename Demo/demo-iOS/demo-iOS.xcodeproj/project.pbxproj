@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2848A585278719100051A936 /* RtspPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2848A584278719100051A936 /* RtspPlayerView.xib */; };
 		287E9B342785B0D400A46B08 /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287E9B332785B0D400A46B08 /* RootViewController.storyboard */; };
 		287E9B362785B40000A46B08 /* RtspPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287E9B352785B40000A46B08 /* RtspPlayerView.swift */; };
 		5B4483D96DC416B6E2098D77 /* Pods_demo_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652FADC7FD99912D1B883FB1 /* Pods_demo_iOS.framework */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2848A584278719100051A936 /* RtspPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RtspPlayerView.xib; sourceTree = "<group>"; };
 		287E9B332785B0D400A46B08 /* RootViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootViewController.storyboard; sourceTree = "<group>"; };
 		287E9B352785B40000A46B08 /* RtspPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtspPlayerView.swift; sourceTree = "<group>"; };
 		38C991CC5CA01B5A94D57925 /* Pods-demo-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo-iOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-demo-iOS/Pods-demo-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				AC80331A24BA1A2F002B3D40 /* Resources */,
 				287E9B332785B0D400A46B08 /* RootViewController.storyboard */,
 				287E9B352785B40000A46B08 /* RtspPlayerView.swift */,
+				2848A584278719100051A936 /* RtspPlayerView.xib */,
 			);
 			path = "demo-iOS";
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				AC80332224BA1A2F002B3D40 /* video-h265.mkv in Resources */,
 				AC3E54AC24B9E815002B6B1B /* Localized.strings in Resources */,
 				AC80332024BA1A2F002B3D40 /* google-help-vr.mp4 in Resources */,
+				2848A585278719100051A936 /* RtspPlayerView.xib in Resources */,
 				AC3E54AB24B9E810002B6B1B /* LaunchScreen.storyboard in Resources */,
 				AC08615620B69A4500D801FC /* Assets.xcassets in Resources */,
 			);
