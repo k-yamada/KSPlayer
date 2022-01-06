@@ -32,8 +32,6 @@ open class RtspPlayerView: PlayerView {
             if let resource = resource, oldValue !== resource {
                 srtControl.searchSubtitle(name: resource.name)
                 toolBar.definitionButton.isHidden = resource.definitions.count < 2
-                autoFadeOutViewWithAnimation()
-                isMaskShow = true
             }
         }
     }
@@ -44,23 +42,6 @@ open class RtspPlayerView: PlayerView {
     public var replayButton = UIButton()
     public let srtControl = KSSubtitleController()
     public var isLock: Bool { false }
-    open var isMaskShow = true {
-        didSet {
-            let alpha: CGFloat = isMaskShow && !isLock ? 1.0 : 0.0
-            UIView.animate(withDuration: 0.3) {
-                if self.isPlayed {
-                    self.replayButton.alpha = self.isMaskShow ? 1.0 : 0.0
-                }
-                self.topMaskView.alpha = alpha
-                self.bottomMaskView.alpha = alpha
-                self.delegate?.playerController(maskShow: self.isMaskShow)
-                self.layoutIfNeeded()
-            }
-            if isMaskShow {
-                autoFadeOutViewWithAnimation()
-            }
-        }
-    }
 
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -111,12 +92,10 @@ open class RtspPlayerView: PlayerView {
             replayButton.isHidden = true
             replayButton.isSelected = false
             hideLoader()
-            autoFadeOutViewWithAnimation()
         case .paused, .playedToTheEnd, .error:
             hideLoader()
             replayButton.isHidden = false
             delayItem?.cancel()
-            isMaskShow = true
             if state == .playedToTheEnd {
                 replayButton.isSelected = true
             }
@@ -130,7 +109,6 @@ open class RtspPlayerView: PlayerView {
         delayItem = nil
         resource = nil
         toolBar.reset()
-        isMaskShow = false
         hideLoader()
         replayButton.isSelected = false
         replayButton.isHidden = false
@@ -140,17 +118,6 @@ open class RtspPlayerView: PlayerView {
     // MARK: - KSSliderDelegate
 
     override open func slider(value: Double, event: ControlEvents) {
-        if event == .valueChanged {
-            delayItem?.cancel()
-        } else if event == .touchUpInside {
-            autoFadeOutViewWithAnimation()
-        }
-        super.slider(value: value, event: event)
-        if event == .touchDown {
-            isSliderSliding = true
-        } else if event == .touchUpInside {
-            isSliderSliding = false
-        }
     }
 
     open func change(definitionIndex: Int) {
@@ -191,7 +158,6 @@ public extension VideoPlayerView {
      - parameter isAdd:         isAdd
      */
     func showSeekToView(second: TimeInterval, isAdd: Bool) {
-        isMaskShow = true
         seekToView.isHidden = false
         toolBar.currentTime = second
         seekToView.set(text: second.toString(for: toolBar.timeType), isAdd: isAdd)
@@ -242,20 +208,6 @@ extension VideoPlayerView {
 // MARK: - private functions
 
 extension RtspPlayerView {
-
-    /**
-     auto fade out controll view with animtion
-     */
-    private func autoFadeOutViewWithAnimation() {
-        delayItem?.cancel()
-        // 播放的时候才自动隐藏
-        guard toolBar.playButton.isSelected else { return }
-        delayItem = DispatchWorkItem { [weak self] in
-            self?.isMaskShow = false
-        }
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + KSPlayerManager.animateDelayTimeInterval,
-                                      execute: delayItem!)
-    }
 
     private func showLoader() {
         loadingIndector.isHidden = false
