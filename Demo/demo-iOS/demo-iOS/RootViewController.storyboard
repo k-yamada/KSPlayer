@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS1-6Y-m7H" customClass="RtspVideoView" customModule="demo_iOS" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS1-6Y-m7H" customClass="KSVideoView" customModule="demo_iOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="414" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -34,7 +34,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="rtspVideoView" destination="mS1-6Y-m7H" id="2NA-Yq-rJM"/>
+                        <outlet property="ksVideoView" destination="mS1-6Y-m7H" id="fww-WU-cYy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

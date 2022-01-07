@@ -3,14 +3,15 @@ import UIKit
 import MediaPlayer
 import KSPlayer
 
-protocol RtspPlayerViewDelegate: AnyObject {
-    func rtspPlayerView(_ rtspPlayerView: RtspPlayerView, didReadyToPlay naturalSize: CGSize)
+protocol KSPlayerViewDelegate: AnyObject {
+    func ksPlayerView(_ ksPlayerView: KSPlayerView, didReadyToPlay naturalSize: CGSize)
+    func ksPlayerViewDidFinishBuffer(_ ksPlayerView: KSPlayerView)
 }
 
-open class RtspPlayerView: PlayerView {
+open class KSPlayerView: PlayerView {
     var scrollDirection = KSPanDirection.horizontal
     var tmpPanValue: Float = 0
-    weak var viewDelegate: RtspPlayerViewDelegate?
+    weak var viewDelegate: KSPlayerViewDelegate?
 
     private(set) var isPlayed = false
 
@@ -50,34 +51,46 @@ open class RtspPlayerView: PlayerView {
 
     open func setupUIComponents() {
         addSubview(playerLayer)
-        print("frameSize: playerLayer1: \(playerLayer.frame)")
-//        backgroundColor = .black
         addConstraint()
         layoutIfNeeded()
-        print("frameSize: playerLayer2: \(playerLayer.frame)")
     }
 
+    // MARK: - KSPlayerLayerDelegate
+
     override open func player(layer: KSPlayerLayer, currentTime: TimeInterval, totalTime: TimeInterval) {
+        print("Debug: currentTime")
         super.player(layer: layer, currentTime: currentTime, totalTime: totalTime)
     }
 
     override open func player(layer: KSPlayerLayer, state: KSPlayerState) {
+        print("Debug: state: \(state)")
         super.player(layer: layer, state: state)
         switch state {
         case .readyToPlay:
             if let naturalSize = layer.player?.naturalSize {
-                viewDelegate?.rtspPlayerView(self, didReadyToPlay: naturalSize)
+                viewDelegate?.ksPlayerView(self, didReadyToPlay: naturalSize)
             }
             toolBar.timeSlider.isPlayable = true
         case .buffering:
             isPlayed = true
         case .bufferFinished:
+            viewDelegate?.ksPlayerViewDidFinishBuffer(self)
             isPlayed = true
         case .paused, .playedToTheEnd, .error:
             break
         default:
             break
         }
+    }
+
+    override open func player(layer: KSPlayerLayer, finish error: Error?) {
+        print("Debug: finish")
+        super.player(layer: layer, finish: error)
+    }
+
+    override open func player(layer: KSPlayerLayer, bufferedCount: Int, consumeTime: TimeInterval) {
+        print("Debug: bufferedCount: \(bufferedCount), consumeTime: \(consumeTime)")
+        super.player(layer: layer, bufferedCount: bufferedCount, consumeTime: consumeTime)
     }
 
     override open func resetPlayer() {
@@ -126,7 +139,6 @@ open class RtspPlayerView: PlayerView {
             playerLayer.leadingAnchor.constraint(equalTo: leadingAnchor),
             playerLayer.bottomAnchor.constraint(equalTo: bottomAnchor),
             playerLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            playerLayer.widthAnchor.constraint(equalToConstant: 300)
         ])
     }
 }

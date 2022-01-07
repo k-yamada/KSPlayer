@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2848A585278719100051A936 /* RtspVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2848A584278719100051A936 /* RtspVideoView.xib */; };
-		286602F62787B8C100EC2F39 /* RtspVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286602F52787B8C100EC2F39 /* RtspVideoView.swift */; };
+		2848A585278719100051A936 /* KSVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2848A584278719100051A936 /* KSVideoView.xib */; };
+		286602F62787B8C100EC2F39 /* KSVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286602F52787B8C100EC2F39 /* KSVideoView.swift */; };
 		287E9B342785B0D400A46B08 /* RootViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 287E9B332785B0D400A46B08 /* RootViewController.storyboard */; };
-		287E9B362785B40000A46B08 /* RtspPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287E9B352785B40000A46B08 /* RtspPlayerView.swift */; };
+		287E9B362785B40000A46B08 /* KSPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287E9B352785B40000A46B08 /* KSPlayerView.swift */; };
 		5B4483D96DC416B6E2098D77 /* Pods_demo_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 652FADC7FD99912D1B883FB1 /* Pods_demo_iOS.framework */; };
 		AC08614F20B69A4500D801FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08614E20B69A4500D801FC /* AppDelegate.swift */; };
 		AC08615620B69A4500D801FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC08615520B69A4500D801FC /* Assets.xcassets */; };
@@ -48,10 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2848A584278719100051A936 /* RtspVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RtspVideoView.xib; sourceTree = "<group>"; };
-		286602F52787B8C100EC2F39 /* RtspVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtspVideoView.swift; sourceTree = "<group>"; };
+		2848A584278719100051A936 /* KSVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KSVideoView.xib; sourceTree = "<group>"; };
+		286602F52787B8C100EC2F39 /* KSVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSVideoView.swift; sourceTree = "<group>"; };
 		287E9B332785B0D400A46B08 /* RootViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootViewController.storyboard; sourceTree = "<group>"; };
-		287E9B352785B40000A46B08 /* RtspPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RtspPlayerView.swift; sourceTree = "<group>"; };
+		287E9B352785B40000A46B08 /* KSPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSPlayerView.swift; sourceTree = "<group>"; };
 		38C991CC5CA01B5A94D57925 /* Pods-demo-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo-iOS.release.xcconfig"; path = "../Pods/Target Support Files/Pods-demo-iOS/Pods-demo-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		50CE87CB5D349C9B4FC639C6 /* Pods-demo-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo-iOS.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-demo-iOS/Pods-demo-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		652FADC7FD99912D1B883FB1 /* Pods_demo_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,9 +155,9 @@
 				AC3E491D24B98CEB002B6B1B /* Localized.strings */,
 				AC80331A24BA1A2F002B3D40 /* Resources */,
 				287E9B332785B0D400A46B08 /* RootViewController.storyboard */,
-				287E9B352785B40000A46B08 /* RtspPlayerView.swift */,
-				2848A584278719100051A936 /* RtspVideoView.xib */,
-				286602F52787B8C100EC2F39 /* RtspVideoView.swift */,
+				287E9B352785B40000A46B08 /* KSPlayerView.swift */,
+				2848A584278719100051A936 /* KSVideoView.xib */,
+				286602F52787B8C100EC2F39 /* KSVideoView.swift */,
 			);
 			path = "demo-iOS";
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				AC80332224BA1A2F002B3D40 /* video-h265.mkv in Resources */,
 				AC3E54AC24B9E815002B6B1B /* Localized.strings in Resources */,
 				AC80332024BA1A2F002B3D40 /* google-help-vr.mp4 in Resources */,
-				2848A585278719100051A936 /* RtspVideoView.xib in Resources */,
+				2848A585278719100051A936 /* KSVideoView.xib in Resources */,
 				AC3E54AB24B9E810002B6B1B /* LaunchScreen.storyboard in Resources */,
 				AC08615620B69A4500D801FC /* Assets.xcassets in Resources */,
 			);
@@ -403,10 +403,10 @@
 				AC21D0E626D226B40007891C /* RootViewController.swift in Sources */,
 				AC08619720B69AB400D801FC /* MasterViewController.swift in Sources */,
 				AC458DE621DF830F00BD4CF9 /* AudioViewController.swift in Sources */,
-				287E9B362785B40000A46B08 /* RtspPlayerView.swift in Sources */,
+				287E9B362785B40000A46B08 /* KSPlayerView.swift in Sources */,
 				AC08619620B69AB400D801FC /* DetailViewController.swift in Sources */,
 				AC08614F20B69A4500D801FC /* AppDelegate.swift in Sources */,
-				286602F62787B8C100EC2F39 /* RtspVideoView.swift in Sources */,
+				286602F62787B8C100EC2F39 /* KSVideoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

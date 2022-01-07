@@ -12,29 +12,13 @@ import UIKit
 
 class RootViewController: UIViewController {
 
-    @IBOutlet weak var rtspVideoView: RtspVideoView!
+    @IBOutlet weak var ksVideoView: KSVideoView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // let url = URL(string: "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov") {
-        let url = URL(string: "rtsp://192.168.1.4:8554/mystream")!
-        rtspVideoView.set(url: url)
+        // let url = URL(string: "ks://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov") {
+        let url = URL(string: "rtsp://192.168.100.90:8554/mystream")!
+        ksVideoView.set(url: url)
     }
-
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        .lightContent
-//    }
-//
-//    override var prefersStatusBarHidden: Bool {
-////        !playerView.isMaskShow
-//        true
-//    }
-//
-//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        KSPlayerManager.supportedInterfaceOrientations
-//    }
-//
-//    private let playerView = IOSVideoPlayerView()
-
 }

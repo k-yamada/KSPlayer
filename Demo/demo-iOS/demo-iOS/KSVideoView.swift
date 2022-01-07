@@ -1,19 +1,19 @@
 import UIKit
 import KSPlayer
 
-protocol RtspVideoViewDelegate: AnyObject {
-    func rtspVideoViewDidStart()
+protocol KSVideoViewDelegate: AnyObject {
+    func ksVideoViewDidStart()
 }
 
-final class RtspVideoView: UIView {
+final class KSVideoView: UIView {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var videoView: UIView!
 
     @IBOutlet weak var videoWidthConstraint: NSLayoutConstraint!
 
-    weak var delegate: RtspVideoViewDelegate?
+    weak var delegate: KSVideoViewDelegate?
 
-    private let playerView = RtspPlayerView()
+    private let playerView = KSPlayerView()
 
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -30,6 +30,7 @@ final class RtspVideoView: UIView {
         view.frame = self.bounds
         self.addSubview(view)
 
+        videoView.isHidden = true
         playerView.viewDelegate = self
     }
 
@@ -50,12 +51,16 @@ final class RtspVideoView: UIView {
     }
 }
 
-// MARK: - UIScrollViewDelegate
-extension RtspVideoView: RtspPlayerViewDelegate {
-    func rtspPlayerView(_ rtspPlayerView: RtspPlayerView, didReadyToPlay naturalSize: CGSize) {
+// MARK: - KSPlayerViewDelegate
+extension KSVideoView: KSPlayerViewDelegate {
+    func ksPlayerView(_ ksPlayerView: KSPlayerView, didReadyToPlay naturalSize: CGSize) {
         let ratio = frame.height / naturalSize.height
         let videoWidth = naturalSize.width * ratio
         videoWidthConstraint.constant = videoWidth
+    }
+
+    func ksPlayerViewDidFinishBuffer(_ ksPlayerView: KSPlayerView) {
         backgroundView.backgroundColor = .black
+        videoView.isHidden = false
     }
 }

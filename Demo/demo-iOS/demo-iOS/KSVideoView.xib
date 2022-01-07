@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RtspVideoView" customModule="demo_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KSVideoView" customModule="demo_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundView" destination="o0k-gS-lm4" id="zbA-86-qYd"/>
                 <outlet property="videoView" destination="Bif-1W-TY2" id="UUq-Za-nhj"/>
