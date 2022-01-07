@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS1-6Y-m7H" customClass="RtspVideoView" customModule="demo_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="qpg-EB-QLP"/>
+                                    <constraint firstAttribute="height" constant="200" id="qpg-EB-QLP"/>
                                 </constraints>
                             </view>
                         </subviews>

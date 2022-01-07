@@ -126,7 +126,7 @@ open class RtspPlayerView: PlayerView {
             playerLayer.leadingAnchor.constraint(equalTo: leadingAnchor),
             playerLayer.bottomAnchor.constraint(equalTo: bottomAnchor),
             playerLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            playerLayer.widthAnchor.constraint(equalToConstant: 300)
+//            playerLayer.widthAnchor.constraint(equalToConstant: 300)
         ])
     }
 }

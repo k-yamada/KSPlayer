@@ -6,6 +6,7 @@ protocol RtspVideoViewDelegate: AnyObject {
 }
 
 final class RtspVideoView: UIView {
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var videoView: UIView!
 
     @IBOutlet weak var videoWidthConstraint: NSLayoutConstraint!
@@ -52,8 +53,9 @@ final class RtspVideoView: UIView {
 // MARK: - UIScrollViewDelegate
 extension RtspVideoView: RtspPlayerViewDelegate {
     func rtspPlayerView(_ rtspPlayerView: RtspPlayerView, didReadyToPlay naturalSize: CGSize) {
-        // todo: 幅を計算
-//        videoWidthConstraint.constant = 300
-//        backgroundColor = .black
+        let ratio = frame.height / naturalSize.height
+        let videoWidth = naturalSize.width * ratio
+        videoWidthConstraint.constant = videoWidth
+        backgroundView.backgroundColor = .black
     }
 }
