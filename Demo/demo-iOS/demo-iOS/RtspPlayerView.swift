@@ -3,10 +3,14 @@ import UIKit
 import MediaPlayer
 import KSPlayer
 
-open class RtspPlayerView: PlayerView {
+protocol RtspPlayerViewDelegate: AnyObject {
+    func rtspPlayerView(_ rtspPlayerView: RtspPlayerView, didReadyToPlay naturalSize: CGSize)
+}
 
+open class RtspPlayerView: PlayerView {
     var scrollDirection = KSPanDirection.horizontal
     var tmpPanValue: Float = 0
+    weak var viewDelegate: RtspPlayerViewDelegate?
 
     private(set) var isPlayed = false
 
@@ -62,7 +66,7 @@ open class RtspPlayerView: PlayerView {
         switch state {
         case .readyToPlay:
             if let naturalSize = layer.player?.naturalSize {
-                updateUI(naturalSize: naturalSize)
+                viewDelegate?.rtspPlayerView(self, didReadyToPlay: naturalSize)
             }
             toolBar.timeSlider.isPlayable = true
         case .buffering:
@@ -124,13 +128,5 @@ open class RtspPlayerView: PlayerView {
             playerLayer.trailingAnchor.constraint(equalTo: trailingAnchor),
             playerLayer.widthAnchor.constraint(equalToConstant: 300)
         ])
-    }
-
-    private func updateUI(naturalSize: CGSize) {
-        print("updateUI: \(naturalSize)")
-        print("playerLayer.frame: \(playerLayer.frame)")
-        frame = CGRect(x: 0, y: 0, width: 300, height: playerLayer.frame.height)
-        print("playerLayer.frame: \(playerLayer.frame)")
-//        playerLayer.player?. contentMode = .scaleAspectFit
     }
 }

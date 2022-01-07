@@ -17,35 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1b4-IQ-rwd">
-                                <rect key="frame" x="157" y="44" width="100" height="100"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mS1-6Y-m7H" customClass="RtspVideoView" customModule="demo_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="3pN-Jv-Fdp"/>
-                                    <constraint firstAttribute="height" constant="100" id="4j8-cC-Xkp"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LkM-xd-tTY">
-                                <rect key="frame" x="157" y="44" width="100" height="100"/>
-                                <color key="backgroundColor" red="1" green="0.21761842757936509" blue="0.2169673859126984" alpha="0.3308868408203125" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="kqs-Tq-de3"/>
-                                    <constraint firstAttribute="width" constant="100" id="zLQ-QF-63e"/>
+                                    <constraint firstAttribute="height" constant="100" id="qpg-EB-QLP"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LkM-xd-tTY" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="5OK-5a-qdS"/>
-                            <constraint firstItem="1b4-IQ-rwd" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="BIv-O4-ExK"/>
-                            <constraint firstItem="1b4-IQ-rwd" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Xng-BA-lyd"/>
-                            <constraint firstItem="LkM-xd-tTY" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gNY-bS-djR"/>
+                            <constraint firstItem="mS1-6Y-m7H" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="57H-JL-v5D"/>
+                            <constraint firstItem="mS1-6Y-m7H" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="D9T-gI-ihe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mS1-6Y-m7H" secondAttribute="trailing" id="JVZ-8A-7at"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="videoView" destination="1b4-IQ-rwd" id="W7Y-x6-E1P"/>
-                        <outlet property="videoWidthConstraint" destination="3pN-Jv-Fdp" id="MOf-mk-SmB"/>
+                        <outlet property="rtspVideoView" destination="mS1-6Y-m7H" id="2NA-Yq-rJM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -56,9 +45,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
